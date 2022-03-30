@@ -1,0 +1,92 @@
+*{
+    color: white;
+    margin: 0;
+}
+#mainbox{
+    background-color:#212f3d ;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    margin: 10vw;
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-style: solid;
+    border-radius: 30px;
+    border-width: 10px;
+    border-color: black;
+}
+
+#pcard *{
+    color: black;
+}
+
+.del-post {
+    text-decoration: none;
+}
+
+body {
+    background-image: url('../staticfiles/images/bg1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#pcard{
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    background-color: white;
+    border-color: #020207;
+    width: 45%;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 10px;
+     
+}
+
+p{
+    margin: 10px;
+    word-break: normal;
+    white-space: pre-wrap;
+}
+.info{
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 1px;
+    background-color: #2b3e53 ;
+}
+.flrtab{
+    table-layout: fixed;
+    width: 200px;
+    align-self: center;
+    margin-bottom: 10px;
+}
+.flr{
+    width:50px;
+}
+
+.lbl{
+    width : 300px;
+}
+.maintable{
+    align-self: flex-start;
+    margin: 40px;
+    border: solid 1px white;
+    border-radius: 10px;
+    width: 95%;
+    padding: 20px;
+    border-collapse: separate;
+    border-spacing: 0 1em; 
+}
+
+.btn{
+    width: 100%;
+    height: 3%;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: larger;
+    padding: 10px;
+}

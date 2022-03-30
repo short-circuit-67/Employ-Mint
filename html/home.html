@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmployMint</title>
+    <link rel="stylesheet" href= {% static 'home.css'%}>
+    <script src={% static 'javascripts/home.js'%}></script>
+</head>
+<body>
+    <div id='first-div'>
+        <div id='logo'>
+            <h1 id= "wnote">
+                Welcome to <b style="color: cornflowerblue;">EMPLOYMiNT</b>
+            </h1>
+            <img id='mint-leaf' src={% static 'images/pngwing.com.png'%} alt="emp">
+        </div>
+        <div id='about_website'>
+            <p>
+                Welcome to your professional community <br> <br>
+                Find and Post jobs with the people you may know, Connect with people who can help <br> <br>
+                Join your colleagues, classmates, and friends on <b style="color: cornflowerblue;">EMPLOYMiNT</b>
+            </p>
+        </div>
+        <div style="display: flex;">
+            <div>
+                <img src="{% static 'images/homepic.svg'%}"  alt="">
+            </div>
+            <div id='links'>
+                <table >
+                    <tr>
+                        <td class="tds" onmouseenter="focus_on_element(this, 'signup/')" onmouseleave="unfocus_on_element(this)">
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <h1>
+                                    Join us at <b style="color: cornflowerblue;">EMPLOYMiNT</b>
+                                </h1>
+                            </div>
+                        </td>
+                        <td class="tds">
+                            <div>
+                                <p>
+                                    Join us at<b style="color: cornflowerblue;">EMPLOYMiNT</b> to start your carreering
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                       <td class="tdsee">
+                           Already have an accout?<br>
+                           <b style="color: cornflowerblue;">Login</b> here <br>
+                       </td> 
+                       <td class="tds" onmouseenter="focus_on_element(this, 'login/')" onmouseleave="unfocus_on_element(this)">
+                           <div style="display: flex; align-items: center; justify-content: center;">
+                                <h1>
+                                    <b style="color: cornflowerblue;">Login</b> to you account
+                                </h1>
+                            </div>
+                       </td>
+                    </tr> 
+                    <tr>
+                        <td class="tds" >
+                            <div style="display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                <h1 onclick="window.open('/jobs/','_self')">
+                                    View all jobs
+                                </h1>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <p>
+                                    <b style="color: cornflowerblue;">See</b> jobs
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tds" >
+                            <div >
+                                <p >
+                                    <b style="color: cornflowerblue;">Post</b> job
+                                </p>
+                            </div>
+                        </td>
+                        <td>
+                            <div onclick="window.open('/postjob/','_self')" style="display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                <h1>
+                                    Post a job
+                                </h1>
+                            </div>
+                        </td>
+                    </tr>
+                </table>            
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>

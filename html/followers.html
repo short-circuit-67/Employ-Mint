@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{%block cssfile%}
+    <link rel="stylesheet" href= {% static 'search_all.css' %}>
+{% endblock %}
+{% block content %}
+<h1>My Friend List! </h1>
+<div class = 'boxes'>
+    {% for obj in frnd %}
+    <div id='pcard'>
+        <div style='display: flex; flex-direction: column;'>
+            <img src="https://www.clipartmax.com/png/full/214-2143742_individuals-whatsapp-profile-picture-icon.png" style="border-radius: 50%;width: 20%;height: 20%;align-self: center;margin: 30px;">
+            <table class="flrtab">
+                <tr>
+                    <th class="flr">Follower</th>
+                    <th  class="flr"> Following</th>
+                </tr>
+                <tr>
+                    <th class="flr"> {{ obj.followers }} </th>
+                    <th class="flr"> {{ obj.following}} </th>
+                </tr>
+            </table>    
+        </div>
+        <hr style="color: black; width: 40%; margin-left: 30%; margin-right: 30%;">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items:flex-start;">
+            <h1 style="color: cornflowerblue; margin: 5px; align-self: center;"> {{obj.name|title}} </h1>
+            <h4 style="margin: 5px;">@<b style="color:midnightblue">{{obj.username}}</b>, &ensp; Joined since {{obj.joindate}}</h4>
+        </div>
+        <a class="btn" href=../{{obj.username}}/message> Message </a>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

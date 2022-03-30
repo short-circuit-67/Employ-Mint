@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cssfile %}
+    <link rel="stylesheet" href={% static 'profilepage.css' %}>
+{% endblock %}
+
+{% block bodybg%}
+{% endblock %}
+
+
+{% block content %}
+        <div id="mainbox">
+            <div id='pcard'>
+                <div style='display: flex; flex-direction: column;'>
+                    <img src="https://www.clipartmax.com/png/full/214-2143742_individuals-whatsapp-profile-picture-icon.png" style="border-radius: 50%;width: 20%;height: 20%;align-self: center;margin: 30px;">
+                    <table class="flrtab">
+                        <tr>
+                            <th class="flr">Follower</th>
+                            <th  class="flr"> Following</th>
+                        </tr>
+                        <tr>
+                            <th class="flr"> {{ frc }} </th>
+                            <th class="flr"> {{ fgc}} </th>
+                        </tr>
+                    </table>    
+                </div>
+                <hr style="color: black; width: 40%; margin-left: 30%; margin-right: 30%;">
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items:flex-start;">
+                    <h1 style="color: cornflowerblue; margin: 5px; align-self: center;"> {{name|capfirst}} </h1>
+                    <h4 style="margin: 5px;"><b style="color:midnightblue">@{{username}}</b>, &ensp;  Joined since {{joindate}}</h4>
+                    <h4 style="margin: 5px;"> This user has {{mututal_count}} followers you may know</h4>
+                </div>
+                {% if request.user.get_username == username %}
+                    <form class="btn" action="/logout/" method="post"> {% csrf_token %}
+                        <input hidden type="text" value= {{ username }} name="followed_id" size="1"/>
+                        <input type="submit" class="btn" value="Log Out" name="mybtn"> 
+                    </form>
+                    <form class="btn" action={{ username }}/followers/ method="post"> {% csrf_token %}
+                        <input type="submit" class="btn" value="My Followers" name="mybtn"> 
+                    </form>
+                {% else %}
+                    
+                    <form class="btn" action="." method="post"> {% csrf_token %}
+                        <input hidden type="text" value= {{ username }} name="followed_id" size="1"/>
+                        {% if iff %}
+                            <input type="submit" class="btn" value="Unfollow" name="mybtn"> 
+                        {% else %}
+                            <input type="submit" class="btn" value="Follow" name="mybtn"> 
+                        {% endif %}
+                    </form>
+                {%endif%}
+
+            </div>
+
+            <table class="maintable" >
+                <tr id="about" >
+                    <td class="lbl">
+                        <h2>About <b style="color: cornflowerblue;">{{name}}</b></h2>
+                    </td>
+                    <td class="info">
+                        <p>
+                            {{ab}}
+                        </p>
+                    </td>
+                </tr>
+                <tr id="about" >
+                    <td class="lbl">
+                        <h2>Education History</h2>
+                    </td>
+                    <td  class="info">
+                        <p>
+                            {{eh}}
+                        </p>
+                    </td>
+                </tr>
+                <tr id="about" >
+                    <td class="lbl">
+                        <h2>Job History</h2>
+                    </td>
+                    <td  class="info">
+                        <p>
+                            {{jh}}
+                        </p>
+                    </td>
+                </tr>  
+                {% if request.user.username == username %}
+                    <tr id="jobposts" >
+                        <td class="lbl">
+                            <h2>My Job Posts <h4>(Private)</h4></h2>
+                        </td>
+                        <td  class="info">
+                            {% for job in jp%}
+                                    <div style="margin:20px 0px 20px 50px; width: fit-content ;display: flex; align-items: stretch;">
+                                        <h1>
+                                            {{job.position}} 
+                                            <h2> {{job.company}} &emsp; <a class='del-post' href=delete_job/{{job.job_id}}/> DELETE POST </a></h2>
+                                        </h1>     
+                                    </div>
+                            {% endfor %}
+                        </td>
+                    </tr>  
+                    <tr id="jobpapplications" >
+                        <td class="lbl">
+                            <h2>My Job Applications <h4>(Private)</h4></h2>
+                        </td>
+                        <td  class="info">
+                            {% for job in ja%}
+                                    <div style="margin:20px 0px 20px 50px; width: fit-content ;display: flex; align-items: stretch;">
+                                        <h1>
+                                            {{job.position}} 
+                                            <h2> {{job.company}} &emsp; <a class='del-post' href=unapply_job/{{job.job_id}}/> UNAPPLY </a></h2>
+                                        </div>
+                                        </h1>     
+                            {% endfor %}
+                        </td>
+                    </tr>  
+                {% endif %}
+            </table>
+        </div>
+{% endblock %}

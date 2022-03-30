@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href={% static "navbar.css" %}>
+<div id='navbar'>
+    <img id='leaf' onclick='window.open("/","_self")' src={% static 'images/pngwing.com.png'%} alt="Home">
+    <a id="about_us" href="/signup/"> Sign Up </a>
+    <form id="frm" action="/search/">
+        <input name='search_string' required type="search" id="searchbar" placeholder="Search Jobs,Profiles, etc." aria-label="Search through site content">
+        <input id='subbtn'type="submit" value="Search">
+    </form>
+    {% if user.get_username%}
+        <a id="profile_us" href=/profiles/{{user.get_username}}> {{user.get_username}} </a>
+    {% else%}
+        <a id="profile_us" href=/login > Login </a>
+    {% endif %}
+</div>

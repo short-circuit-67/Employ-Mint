@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% load static %}
+{%block cssfile%}
+    <link rel="stylesheet" href= {% static 'search_all.css' %}>
+{% endblock %}
+{% block content %}
+
+{% if jr.posans|length != 0 or jr.cpnyans|length != 0 or jr.reqans|length != 0 %}
+<h1 class='div-header'> Search results for Jobs : </h1>
+<div id='jobspage' class='scrollable'>
+    {% if jr.posans|length  %}
+        <h2>Search results matching Job Position</h2>
+        <div class = 'boxes'>
+            {% for job in jr.posans %}
+            <div class = "box">
+                <div class="boxitem" >
+                    {% if job.id|divisibleby:"2" %}
+                        <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                    {% else %}
+                        <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                    {% endif %}
+                    <form action="/apply/">
+
+                    </form>
+                    <h2> <a href={{job.application_link}}> Apply </a> for  <b style="color: dodgerblue;">{{ job.Position|title }}</b></h2>
+                    <div style="display: flex;" class="smallestbox">
+                        <h3> in <b style="color: #87CEFA;">{{job.Company|title}}</b>  &emsp;</h3>
+                        <h5 > -by <b style="color:#4682B4 "> <a href=../profiles/{{job.Posted_by}}>{{job.Posted_by}}</a></b> </h5>
+                    </div>   
+                </div>
+                <p>
+                    <strong> Requirements: </strong>
+                    <br>
+                    {{job.req}}v
+                </p>
+                <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                <button hidden id = "reqbtn" type="button">Apply Now!</button>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {%endif%}
+
+    <div id='jobspage'>
+        {% if jr.cpnyans|length %}
+            <h2>Search results matching Company Name</h2>
+            <div class = 'boxes'>
+                {% for job in jr.cpnyans %}
+                <div class = "box">
+                    <div class="boxitem" >
+                        {% if job.id|divisibleby:"2" %}
+                            <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                        {% else %}
+                            <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                        {% endif %}
+                        <form action="/apply/">
+    
+                        </form>
+                        <h2> <a href={{job.application_link}}> Apply </a> for  <b style="color: dodgerblue;">{{ job.Position|title }}</b></h2>
+                        <div style="display: flex;" class="smallestbox">
+                            <h3> in <b style="color: #87CEFA;">{{job.Company|title}}</b>  &emsp;</h3>
+                            <h5 > -by <b style="color:#4682B4 "> <a href=../profiles/{{job.Posted_by}}>{{job.Posted_by}}</a></b> </h5>
+                        </div>   
+                    </div>
+                    <p>
+                        <strong> Requirements: </strong>
+                        <br>
+                        {{job.req}}
+                    </p>
+                    <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                    <button hidden id = "reqbtn" type="button">Apply Now!</button>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div id='jobspage'>
+        {% if jr.reqans|length %}
+            <h2>Search results matching Job Requirements</h2>
+            <div class = 'boxes'>
+                {% for job in jr.reqans %}
+                <div class = "box">
+                    <div class="boxitem" >
+                        {% if job.id|divisibleby:"2" %}
+                            <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                        {% else %}
+                            <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                        {% endif %}
+                        <form action="/apply/">
+    
+                        </form>
+                        <h2> <a href={{job.application_link}}> Apply </a> for  <b style="color: dodgerblue;">{{ job.Position|title }}</b></h2>
+                        <div style="display: flex;" class="smallestbox">
+                            <h3> in <b style="color: #87CEFA;">{{job.Company|title}}</b>  &emsp;</h3>
+                            <h5 > -by <b style="color:#4682B4 "> <a href=../profiles/{{job.Posted_by}}>{{job.Posted_by}}</a></b> </h5>
+                        </div>   
+                    </div>
+                    <p>
+                        <strong> Requirements: </strong>
+                        <br>
+                        {{job.req}}
+                    </p>
+                    <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                    <button hidden id = "reqbtn" type="button">Apply Now!</button>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+<hr>
+
+{% if ur.name|length != 0 or ur.abtetc|length != 0 %}
+<h1 class='div-header'> Search results for User Profiles : </h1>
+<div id='jobspage' class="scrollable" >
+    {% if ur.name|length  %}
+    <h2>Search results matching Name</h2>
+    <div class = 'boxes'>
+        {% for obj in ur.name %}
+        <div id='pcard'>
+            <div style='display: flex; flex-direction: column;'>
+                <img src="https://www.clipartmax.com/png/full/214-2143742_individuals-whatsapp-profile-picture-icon.png" style="border-radius: 50%;width: 20%;height: 20%;align-self: center;margin: 30px;">
+                <table class="flrtab">
+                    <tr>
+                        <th class="flr">Follower</th>
+                        <th  class="flr"> Following</th>
+                    </tr>
+                    <tr>
+                        <th class="flr"> {{ obj.followers }} </th>
+                        <th class="flr"> {{ obj.following}} </th>
+                    </tr>
+                </table>    
+            </div>
+            <hr style="color: black; width: 40%; margin-left: 30%; margin-right: 30%;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items:flex-start;">
+                <h1 style="color: cornflowerblue; margin: 5px; align-self: center;"> {{obj.name|title}} </h1>
+                <h4 style="margin: 5px;">@<b style="color:midnightblue">{{obj.username}}</b>, &ensp; Joined since {{obj.joindate}}</h4>
+            </div>
+            <a class="btn" href="../profiles/{{obj.username}}"> View Profile </a>
+
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+    {% if ur.abtetc|length %}
+    <h2>Search results matching other details</h2>
+    <div class = 'boxes'>
+        {% for obj in ur.abtetc %}
+        <div id='pcard'>
+            <div style='display: flex; flex-direction: column;'>
+                <img src="https://www.clipartmax.com/png/full/214-2143742_individuals-whatsapp-profile-picture-icon.png" style="border-radius: 50%;width: 20%;height: 20%;align-self: center;margin: 30px;">
+                <table class="flrtab">
+                    <tr>
+                        <th class="flr">Follower</th>
+                        <th  class="flr"> Following</th>
+                    </tr>
+                    <tr>
+                        <th class="flr"> {{ obj.followers }} </th>
+                        <th class="flr"> {{ obj.following}} </th>
+                    </tr>
+                </table>    
+            </div>
+            <hr style="color: black; width: 40%; margin-left: 30%; margin-right: 30%;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items:flex-start;">
+                <h1 style="color: cornflowerblue; margin: 5px; align-self: center;"> {{obj.name|title}} </h1>
+                <h4 style="margin: 5px;">@<b style="color:midnightblue">{{obj.username}}</b>, &ensp; Joined since {{obj.joindate}}</h4>
+            </div>
+            <a class="btn" href="../profiles/{{obj.username}}"> View Profile</a>
+
+        </div>  
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+{% endif %}
+{% if ur.name|length == 0 and ur.abtetc|length == 0 and jr.posans|length == 0 and jr.cpnyans|length == 0 and jr.reqans|length == 0 %}
+        <h1> No result for your search </h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{%block cssfile%}
+    <link rel="stylesheet" href= {% static 'JobProfile.css' %}>
+{% endblock %}
+{% block content %}
+<script type="text/javascript" src= {% static 'javascripts/jobpost.js' %}></script>
+    <div id='jobspage'>
+        <div class = 'boxes'>
+            {% for job in list %}
+            <div class = "box">
+                <div class="boxitem" >
+                    {% if job.id|divisibleby:"2" %}
+                        <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                    {% else %}
+                        <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                    {% endif %}
+                    <form action="/apply/">
+
+                    </form>
+                    <h2> <a href={{job.application_link}}> Apply </a> for  <b style="color: dodgerblue;">{{ job.Position|title }}</b></h2>
+                    <div style="display: flex;" class="smallestbox">
+                        <h3> in <b style="color: #87CEFA;">{{job.Company|title}}</b>  &emsp;</h3>
+                        <h5 > -by <b style="color:#4682B4 "> <a href=../profiles/{{job.Posted_by}}>{{job.Posted_by}}</a></b> </h5>
+                    </div>   
+                </div>
+                <p>
+                    <strong> Requirements: </strong>
+                    <br>
+                    {{job.req}}
+                </p>
+                <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                <button hidden id = "reqbtn" type="button">Apply Now!</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{%block cssfile%}
+    <link rel="stylesheet" href= {% static 'form.css' %}>
+    <script src={% static 'javascripts/confirm_password.js'%}></script>
+    {% endblock %}
+{% block content %}
+    <div id='signup-page'>
+        <div id="signup-border" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <p> {{message}} </p>
+            <form action="." method='POST'> {% csrf_token %}
+                <table>
+                    <tr>
+                        <th>
+                            Username:
+                        </th>
+                        <td>  
+                            <input required type="text" name='auth_username' placeholder="Username">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Password:
+                        </th>
+                        <td> 
+                            <input required type="password" name='auth_password' placeholder="Password">
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value='Log in'>
+            </form>
+        </div>
+    </div>
+{% endblock %}

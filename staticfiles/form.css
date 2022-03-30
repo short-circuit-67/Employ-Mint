@@ -1,0 +1,64 @@
+body {
+    background-image: url('../staticfiles/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+form {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 35% 30% 35%;
+    align-content: center;
+    justify-content: center;
+}
+
+textarea, input, select, option{
+    resize: none;
+    width: 100%;
+    background-color: #212f3d;
+    border: solid 5px black;
+    border-radius: 20px;
+    margin: 10px 0px 10px 5px;
+    padding: 10px 0px 10px 15px;
+}
+
+select {
+    width: fit-content;
+}
+
+textarea, input, select, option :hover {
+    background-color: white;
+    color: black;
+}
+
+input[type='submit'] {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 90%;
+    margin-left: 50px;
+    background-color: white;
+    color: black;
+    height: 100%;
+    border-radius: 20px;
+}
+
+#signup-page {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+}
+
+#signup-border{
+    background-color: #212f3d;
+    padding: 20px;
+    border-radius:40px;
+    width:80%;
+    grid-column: 2 / 3;
+    border: solid 10px black
+}

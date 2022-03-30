@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block cssfile%}
+    <link rel="stylesheet" href= {% static 'search.css' %}>
+{% endblock %}
+
+{% block content %}
+    <div id='jobspage'>
+        <h2>Search results matching Job Position</h2>
+        <div class = 'boxes'>
+            {% for job in posans %}
+            <div class = "box">
+                <div class="boxitem" >
+                    {% if job.id|divisibleby:"2" %}
+                        <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                    {% else %}
+                        <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                    {% endif %}
+                    <form action="/apply/">
+
+                    </form>
+                    <h2> <a href={{job.application_link}}> Apply </a> for  <b style="color: dodgerblue;">{{ job.Position|title }}</b></h2>
+                    <div style="display: flex;" class="smallestbox">
+                        <h3> in <b style="color: #87CEFA;">{{job.Company|title}}</b>  &emsp;</h3>
+                        <h5 > -by <b style="color:#4682B4 "> <a href=../profiles/{{job.Posted_by}}>{{job.Posted_by}}</a></b> </h5>
+                    </div>   
+                </div>
+                <p>
+                    <strong> Requirements: </strong>
+                    <br>
+                    {{job.req}}
+                </p>
+                <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                <button hidden id = "reqbtn" type="button">Apply Now!</button>
+            </div>
+            {% endfor %}
+        </div>
+        <div id='jobspage'>
+            <h2>Search results matching Company Name</h2>
+            <div class = 'boxes'>
+                {% for job in cpnyans %}
+                <div class = "box">
+                    <div class="boxitem" >
+                        {% if job.id|divisibleby:"2" %}
+                            <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                        {% else %}
+                            <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                        {% endif %}
+                        <h2>Apply for <b style="color: dodgerblue;">{{ job.Position }}</b></h2>
+                        <div style="display: flex;" class="smallestbox">
+                            <h3> in <b style="color: #87CEFA;">{{job.Company}}</b>  &emsp;</h3>
+                            <h5 > -by <b style="color:#4682B4 ">{{job.Posted_by}}</b> </h5>
+                        </div>   
+                    </div>
+                    <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                    <button hidden id = "reqbtn" type="button">Apply Now!</button>
+                </div>
+                {% endfor %}
+            </div>
+            <div id='jobspage'>
+                <h2>Search results matching Job Requirements</h2>
+                <div class = 'boxes'>
+                    {% for job in reqans %}
+                    <div class = "box">
+                        <div class="boxitem" >
+                            {% if job.id|divisibleby:"2" %}
+                                <img id ="photu1" src={% static "images/hiringA.png" %} alt="WE ARE HIRING">
+                            {% else %}
+                                <img id ="photu2" src={% static "images/hiringB.png" %} alt="WE ARE HIRING">
+                            {% endif %}
+                            <h2>Apply for <b style="color: dodgerblue;">{{ job.Position }}</b></h2>
+                            <div style="display: flex;" class="smallestbox">
+                                <h3> in <b style="color: #87CEFA;">{{job.Company}}</b>  &emsp;</h3>
+                                <h5 > -by <b style="color:#4682B4 ">{{job.Posted_by}}</b> </h5>
+                            </div>   
+                        </div>
+                        <h4>We Are Paying <b style="color: cornflowerblue;">Rs {{job.salary_min}} - Rs {{job.salary_max}}</b></h4>
+                        <button hidden id = "reqbtn" type="button">Apply Now!</button>
+                    </div>
+                    {% endfor %}
+                </div>
+
+    </div>
+    <script type="text/javascript" src= {% static 'javascripts/reqprev.js' %}></script>
+{% endblock %}
