@@ -37,15 +37,7 @@ a:hover{
     background-color: white;
     color: black;
 }
-#searchbar{
-    margin-left: 1px;
-    margin-right: 1px;
-    width: 80%;
-    border: solid 2px black;
-    border-radius: 10px;
-    background-color: white;
-    color:black;
-}
+
 #subbtn{
     margin-left: 3px;
     margin-right: 3px;
